@@ -2494,10 +2494,10 @@ type-fest@^0.8.1:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
 
-typescript-to-lua@^0.36.0:
-  version "0.36.0"
-  resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-0.36.0.tgz#3055861b2aafe4cc31de49d595a768c379b2b148"
-  integrity sha512-21nXVG74APEhnJTjy32a1gzmSKU8t0wM/c5na+zp4HPxsgAD1TlVN8jwGk4Hma0+ZQ95a2caV8iW/uP0oaxQwQ==
+typescript-to-lua@0.39.0:
+  version "0.39.0"
+  resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-0.39.0.tgz#f0451cf00020b4bb3f3f689f728783f2468b40af"
+  integrity sha512-Qu10RU03egiL4AkTkCUFXANh/kPQ3BGCSxkh6nKsnKAP59jOqzm1fodqMbIKkwuOnAvLLkU7+bY2NASQD/N4kw==
   dependencies:
     resolve "^1.15.1"
     source-map "^0.7.3"
