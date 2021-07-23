@@ -6,7 +6,7 @@ interface PaddleInput {
   keys: {
     up: KeyBind;
     down: KeyBind;
-  }
+  };
 }
 
 interface KeyBind {
@@ -18,9 +18,9 @@ const PaddleInput = component(
   "paddleInput",
   (component: PaddleInput, up: KeyConstant, down: KeyConstant) => {
     component.keys = {
-     up: { key: up, value: false },
-     down: { key: down, value: false },
-    }
+      up: { key: up, value: false },
+      down: { key: down, value: false },
+    };
   },
 );
 

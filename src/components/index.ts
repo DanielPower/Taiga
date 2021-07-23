@@ -5,3 +5,5 @@ export { default as Position } from "./position";
 export { default as Rectangle } from "./rectangle";
 export { default as Velocity } from "./velocity";
 export { default as PaddleInput } from "./paddleInput";
+export { default as Score } from "./score";
+export { default as Goal } from "./goal";

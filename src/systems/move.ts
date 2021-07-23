@@ -1,4 +1,4 @@
-import { Position, Velocity, PaddleInput } from "../components";
+import { Goal, PaddleInput, Position, Velocity } from "../components";
 import * as Concord from "../lib/concord";
 
 interface MovePool extends ConcordSystem {
@@ -12,19 +12,27 @@ interface PaddlePool extends ConcordSystem {
   paddleInput: PaddleInput;
 }
 
+interface BallPool extends ConcordSystem {
+  position: Position;
+  velocity: Velocity;
+  goal: Goal;
+}
+
 interface MoveSystem extends ConcordSystem {
-  pool?: MovePool[];
-  paddlePool?: PaddlePool[];
+  movablePool?: MovePool[];
+  playerPool?: PaddlePool[];
+  ballPool?: BallPool[];
   update?: (this: MoveSystem, dt: number) => void;
 }
 
 const MoveSystem: MoveSystem = Concord.system({
-  pool: ["position", "velocity"],
-  paddlePool: ["position", "velocity", "paddleInput"],
+  movablePool: ["position", "velocity"],
+  playerPool: ["position", "velocity", "paddleInput"],
+  ballPool: ["position", "velocity", "goal"],
 });
 
 MoveSystem.update = function (dt: number) {
-  this.paddlePool.forEach((paddle) => {
+  this.playerPool.forEach((paddle) => {
     if (paddle.paddleInput.keys.up.value) {
       paddle.velocity.y = -300;
     } else if (paddle.paddleInput.keys.down.value) {
@@ -33,9 +41,20 @@ MoveSystem.update = function (dt: number) {
       paddle.velocity.y = 0;
     }
   });
-  this.pool.forEach((entity) => {
+  this.movablePool.forEach((entity) => {
     entity.position.x += entity.velocity.x * dt;
     entity.position.y += entity.velocity.y * dt;
+  });
+  this.ballPool.forEach((entity) => {
+    if (entity.position.x < 0) {
+      entity.goal.rightPlayerScore.value += 1;
+      entity.position.x = love.graphics.getWidth() / 2;
+      entity.position.y = love.graphics.getHeight() / 2;
+    } else if (entity.position.x > love.graphics.getWidth()) {
+      entity.goal.leftPlayerScore.value += 1;
+      entity.position.x = love.graphics.getWidth() / 2;
+      entity.position.y = love.graphics.getHeight() / 2;
+    }
   });
 };
 
